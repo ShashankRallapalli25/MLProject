@@ -20,6 +20,10 @@ class DataTransformation:
         self.data_transformation_config=DataTransformationConfig()
 
     def get_data_transformer_object(self):
+
+        '''
+        This function is responsible for data transformation
+        '''
         try:
             
             numerical_features = ["reading_score","writing_score"]
@@ -82,15 +86,14 @@ class DataTransformation:
             input_feature_train_arr = preprocessor_obj.fit_transform(input_train_df)
             input_feature_test_arr = preprocessor_obj.fit_transform(input_test_df) 
 
-            train_arr = np.c_[input_feature_train_arr, np.array(input_train_df)]
-            test_arr = np.c_[input_feature_test_arr, np.array(input_test_df)]       
+            train_arr = np.c_[input_feature_train_arr, np.array(target_train_df)]
+            test_arr = np.c_[input_feature_test_arr, np.array(target_test_df)]       
 
             logging.info(f"Saved preprocessing obj")
 
             save_object(
                 filepath = self.data_transformation_config.preprocessor_obj_file_path,
                 obj = preprocessor_obj
-
             )
             return(
                 train_arr,
