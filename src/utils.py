@@ -51,4 +51,12 @@ def model_metrics (actual, predicted):
     r2_square = r2_score(actual, predicted)
     return mae, rmse, r2_square
 
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return dill.load(file_obj)
+        
+    except Exception as e:
+        raise CustomException(e,sys)
+
 
