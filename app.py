@@ -13,6 +13,7 @@ app = application
 @app.route('/')
 def index():
     return render_template('index.html')
+
 #Enter '127.0.0.0:5000/predictdata' in the browser to see the actual page
 @app.route('/predictdata', methods = ['GET','POST'])
 def predict_datapoint():
